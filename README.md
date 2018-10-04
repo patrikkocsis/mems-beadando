@@ -1,2 +1,2 @@
 # mems-beadando
-MEMS project
+MEMS project made by Patrik Kocsis & Richard Szerdahelyi
