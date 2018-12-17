@@ -1,23 +1,23 @@
 <?php
-    // Connect to MySQL
+    // MYSQL szerver adatai
 $servername = "localhost";
-$username = "id8018821_kocsis98";  //your user name for php my admin if in local most probaly it will be "root"
-$password = "Mikroproject5";  //password probably it will be empty
-$databasename = "id8018821_weatherstation"; //Your db nane
-// Create connection
+$username = "id8018821_kocsis98";  
+$password = "Mikroproject5";  
+$databasename = "id8018821_weatherstation"; 
+// Kapcsolat létrehozása
 $conn = new mysqli($servername, $username, $password,$databasename);
-// Check connection
+// Kapcsolat ellenőrzése
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 echo "Connected successfully";
 
-    // Prepare the SQL statement
+    // SQL feltétel előkészítés
       date_default_timezone_set('Europe/Budapest');
      $dateS = date('Y-m-d H:i:s', time());
     echo $dateS;
     $SQL = "INSERT INTO WeatherStation (Date,Temperature,Humidity) VALUES ('$dateS','".$_GET["temp"]."','".$_GET["hum"]."')";     
 
-    // Execute SQL statement
+    // SQL feltétel végrehajtása
     mysqli_query($conn, $SQL);
 ?>
