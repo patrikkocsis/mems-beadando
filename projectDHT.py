@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 import pigpio
 import DHT22
 import urllib.request
 from time import sleep
+
 
 #sudo pigpiod minden inditás előtt
 # GPIO betöltése pigpionak
@@ -12,6 +14,8 @@ dht22.trigger()# ez nem számit
 
 # x másodpercig aludjon legalább
 sleepTime = 30
+# rossz adatok esetén való alvási idő
+errorSleepTime = 3
 
 def readDHT22():
     #Új adat
@@ -27,4 +31,9 @@ while True:
         print("Humidity is: " + humidity + "%")
         print("Temperature is: " + temperature +"C")
         urllib.request.urlopen("https://patrikkocsis98.000webhostapp.com/add_data.php?temp="+temperature+"&hum="+humidity).read()
-    sleep(sleepTime)
+        sleep(sleepTime)
+    else:
+        sleep(errorSleepTime)
+
+
+
